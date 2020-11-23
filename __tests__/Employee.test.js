@@ -13,20 +13,20 @@ test('creates an employee object', () => {
 
 test('gets employee name', () => {
     const employee = new Employee('Adam', 1, 'adambarron@me.com');
-    expect(employee.getName()).toEqual('Adam');
+    expect(employee.getName()).toBe('Adam');
 });
 
 test('gets employee id', () => {
     const employee = new Employee('Adam', 1, 'adambarron@me.com');
-    expect(employee.getId()).toEqual(expect.stringContaining(employee.id.toString()))
+    expect(employee.getId()).toBe(1)
 });
 
 test('gets employee email address', () => {
     const employee = new Employee('Adam', 1, 'adambarron@me.com');
-    expect(employee.getEmail()).toEqual(expect.stringContaining('adambarron@me.com'));
+    expect(employee.getEmail()).toBe('adambarron@me.com');
 });
 
 test('gets employee role', () => {
     const employee = new Employee('Adam', 1, 'adambarron@me.com');
-    expect(employee.getRole()).toEqual('Employee');
+    expect(employee.getRole()).toBe('Employee');
 })
