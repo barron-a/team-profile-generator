@@ -1,5 +1,20 @@
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template.js');
+const Engineer = require('./lib/Employee');
+const Intern = require('./lib/Employee');
+
+const teamMembers = [];
+
+const newTeamMember = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'newmember',
+            message: "What would you like to do next?",
+            choices: [{name: 'Add Engineer', value: 'engineer'}, {name: 'Add Intern', value: 'intern'}, {name: "I'm done", value: 'exit'}],
+        },
+    ])
+}
 
 const promptManager = () => {
     return inquirer.prompt([
@@ -171,3 +186,28 @@ const promptIntern = () => {
         },
     ]);
 };
+
+const employeeCreationLoop = () => {
+    return newTeamMember().then(({newmember}) => {
+        console.log(newmember)
+        if (newmember === 'exit') {
+            return;
+        }
+        if (newmember === 'engineer') {
+            console.log('creating an engineer');
+        } else {
+            console.log('creating an intern');
+        };
+        return employeeCreationLoop();
+    })
+}
+
+promptManager()
+    .then(answers => {
+        console.log(answers);
+        return employeeCreationLoop();
+    })
+    .then(() => generatePage(teamMembers))
+    .then(html => {
+        console.log(html);
+    })
