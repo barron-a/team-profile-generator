@@ -188,7 +188,7 @@ const promptIntern = () => {
 };
 
 const employeeCreationLoop = () => {
-    return newTeamMember().then(({newmember}) => {
+    return newTeamMember().then(({ newmember }) => {
         console.log(newmember)
         if (newmember === 'exit') {
             return;
