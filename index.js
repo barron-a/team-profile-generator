@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
 const generatePage = require('./src/page-template.js');
-const Engineer = require('./lib/Employee');
-const Intern = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 const teamMembers = [];
 
@@ -20,7 +21,7 @@ const promptManager = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'managername',
+            name: 'name',
             message: 'What is the name of the team manager?',
             validate: mgrName => {
                 if (mgrName) {
@@ -33,7 +34,7 @@ const promptManager = () => {
         },
         {
             type: 'input',
-            name: 'managerid',
+            name: 'id',
             message: "What is the manager's employee ID?",
             validate: mgrId => {
                 if (mgrId > 0) {
@@ -46,7 +47,7 @@ const promptManager = () => {
         },
         {
             type: 'input',
-            name: 'manageremail',
+            name: 'email',
             message: "What is the manager's e-mail address?",
             validate: mgrEmail => {
                 if (mgrEmail) {
@@ -59,7 +60,7 @@ const promptManager = () => {
         },
         {
             type: 'input',
-            name: 'manageroffice',
+            name: 'office',
             message: "What is the manager's office number?",
             validate: mgrOffice => {
                 if (mgrOffice) {
@@ -69,7 +70,7 @@ const promptManager = () => {
                     return false;
                 }
             }
-        },
+        }
     ]);
 };
 
@@ -77,7 +78,7 @@ const promptEngineer = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'engineername',
+            name: 'name',
             message: 'What is the name of the engineer?',
             validate: engName => {
                 if (engName) {
@@ -90,7 +91,7 @@ const promptEngineer = () => {
         },
         {
             type: 'input',
-            name: 'engineerid',
+            name: 'id',
             message: "What is the engineer's employee ID?",
             validate: engId => {
                 if (engId) {
@@ -103,7 +104,7 @@ const promptEngineer = () => {
         },
         {
             type: 'input',
-            name: 'engineeremail',
+            name: 'email',
             message: "What is the engineer's e-mail address?",
             validate: engEmail => {
                 if (engEmail) {
@@ -116,7 +117,7 @@ const promptEngineer = () => {
         },
         {
             type: 'input',
-            name: 'engineergithub',
+            name: 'github',
             message: "What is the engineer's GitHub username?",
             validate: engGithub => {
                 if (engGithub) {
@@ -134,7 +135,7 @@ const promptIntern = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'internname',
+            name: 'name',
             message: 'What is the name of the intern?',
             validate: internName => {
                 if (internName) {
@@ -147,7 +148,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name: 'internid',
+            name: 'id',
             message: "What is the intern's employee ID?",
             validate: internId => {
                 if (internId) {
@@ -160,7 +161,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name: 'internemail',
+            name: 'email',
             message: "What is the intern's e-mail address?",
             validate: internEmail => {
                 if (internEmail) {
@@ -173,7 +174,7 @@ const promptIntern = () => {
         },
         {
             type: 'input',
-            name: 'internschool',
+            name: 'school',
             message: "Where did the intern go to school?",
             validate: internSchool => {
                 if (internSchool) {
@@ -194,17 +195,31 @@ const employeeCreationLoop = () => {
             return;
         }
         if (newmember === 'engineer') {
-            console.log('creating an engineer');
+            console.log('Creating an Engineer');
+            return promptEngineer().then(answers => {
+                return new Engineer(answers.name, answers.id, answers.email, answers.github)
+            })
         } else {
-            console.log('creating an intern');
-        };
-        return employeeCreationLoop();
+            console.log('Creating an Intern');
+            return promptIntern().then(answers => {
+                return new Intern(answers.name, answers.id, answers.email, answers.school)
+            })
+        }
+    })
+    .then( (newEmployee) => {
+        if (newEmployee) {
+            console.log(newEmployee);
+            teamMembers.push(newEmployee)
+            return employeeCreationLoop();
+        }
     })
 }
 
 promptManager()
     .then(answers => {
         console.log(answers);
+        teamMembers.push(new Manager(answers.name, answers.id, answers.email, answers.office));
+        console.log(teamMembers);
         return employeeCreationLoop();
     })
     .then(() => generatePage(teamMembers))

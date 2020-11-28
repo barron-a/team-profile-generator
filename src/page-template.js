@@ -27,34 +27,34 @@ module.exports = (teamMembers) => {
             <div class = row>
                 ${managers.map(manager => `<div class="card shadow col-3">
                     <div class="card-header text-white bg-primary pb-0 name">${manager.getName()}</div>
-                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>Manager</div>
+                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>${manager.getRole()}</div>
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">id: ${manager.getId()}</li>
-                            <li class="list-group-item">email: ${manager.getEmail()}</li>
-                            <li class="list-group-item">office number: ${manager.getOfficeNumber()}</li>
+                            <li class="list-group-item">ID: ${manager.getId()}</li>
+                            <li class="list-group-item">Email: ${manager.getEmail()}</li>
+                            <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
                         </ul>
                     </div>
                 </div>`)}
                 ${engineers.map(engineer => `<div class="card shadow col-3">
                     <div class="card-header text-white bg-primary pb-0 name">${engineer.getName()}</div>
-                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>Manager</div>
+                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>${engineer.getRole()}</div>
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">id: ${engineer.getId()}</li>
-                            <li class="list-group-item">email: ${engineer.getEmail()}</li>
+                            <li class="list-group-item">ID: ${engineer.getId()}</li>
+                            <li class="list-group-item">E-mail: ${engineer.getEmail()}</li>
                             <li class="list-group-item">GitHub: ${engineer.getGithub()}</li>
                         </ul>
                     </div>
                 </div>`)}
                 ${interns.map(intern => `<div class="card shadow col-3">
                     <div class="card-header text-white bg-primary pb-0 name">${intern.getName()}</div>
-                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>Manager</div>
+                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>${intern.getRole()}</div>
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">id: ${intern.getId()}</li>
-                            <li class="list-group-item">email: ${intern.getEmail()}</li>
-                            <li class="list-group-item">school: ${intern.getSchool()}</li>
+                            <li class="list-group-item">ID: ${intern.getId()}</li>
+                            <li class="list-group-item">E-mail: ${intern.getEmail()}</li>
+                            <li class="list-group-item">School: ${intern.getSchool()}</li>
                         </ul>
                     </div>
                 </div>`)}
