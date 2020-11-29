@@ -191,7 +191,7 @@ const promptIntern = () => {
 
 const employeeCreationLoop = () => {
     return newTeamMember().then(({ newmember }) => {
-        console.log(newmember)
+        //console.log(newmember)
         if (newmember === 'exit') {
             return;
         }
@@ -209,7 +209,7 @@ const employeeCreationLoop = () => {
     })
     .then((newEmployee) => {
         if (newEmployee) {
-            console.log(newEmployee);
+            //console.log(newEmployee);
             teamMembers.push(newEmployee)
             return employeeCreationLoop();
         }
@@ -221,7 +221,7 @@ function writeToFile(fileName, data) {
         if (err) {
             console.log(err);
         }
-        console.log(`HTML complete! Look for the file ${fileName} in the 'dist' folder to see the output.`);
+        console.log(`HTML complete! Go to path ${fileName} to see the output.`);
     });
 };
 
@@ -230,23 +230,22 @@ function copyFile(source, destination) {
         if (err) {
             console.log(err);
         }
-        console.log(`CSS File copied! Look for ${destination} in the 'dist' folder to see the output`);
+        console.log(`CSS File copied! Go to path ${destination} to see the output`);
     });
 };
 
 promptManager()
     .then(answers => {
-        console.log(answers);
+        //console.log(answers);
         teamMembers.push(new Manager(answers.name, answers.id, answers.email, answers.office));
-        console.log(teamMembers);
+        //console.log(teamMembers);
         return employeeCreationLoop();
     })
     .then(() => generatePage(teamMembers))
     .then(html => {
-        console.log(html);
+        //console.log(html);
         writeToFile('./dist/index.html', generatePage(teamMembers));
     })
     .then(css => {
-        console.log(css);
         copyFile('./src/style.css', './dist/style.css')
     });
