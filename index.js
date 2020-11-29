@@ -7,17 +7,7 @@ const Intern = require('./lib/Intern');
 
 const teamMembers = [];
 
-const newTeamMember = () => {
-    return inquirer.prompt([
-        {
-            type: 'list',
-            name: 'newmember',
-            message: "What would you like to do next?",
-            choices: [{name: 'Add Engineer', value: 'engineer'}, {name: 'Add Intern', value: 'intern'}, {name: "I'm done", value: 'exit'}],
-        },
-    ])
-}
-
+// function to prompt for Manager information
 const promptManager = () => {
     return inquirer.prompt([
         {
@@ -75,6 +65,7 @@ const promptManager = () => {
     ]);
 };
 
+// function to prompt for Engineer information
 const promptEngineer = () => {
     return inquirer.prompt([
         {
@@ -132,6 +123,7 @@ const promptEngineer = () => {
     ]);
 };
 
+// function to prompt for Intern information
 const promptIntern = () => {
     return inquirer.prompt([
         {
@@ -189,6 +181,19 @@ const promptIntern = () => {
     ]);
 };
 
+// function to ask user what they would like to do next
+const newTeamMember = () => {
+    return inquirer.prompt([
+        {
+            type: 'list',
+            name: 'newmember',
+            message: "What would you like to do next?",
+            choices: [{name: 'Add Engineer', value: 'engineer'}, {name: 'Add Intern', value: 'intern'}, {name: "I'm done", value: 'exit'}],
+        },
+    ])
+}
+
+// loop that creates new team member based on user input or exits the application if user chooses to exit
 const employeeCreationLoop = () => {
     return newTeamMember().then(({ newmember }) => {
         //console.log(newmember)
@@ -207,6 +212,7 @@ const employeeCreationLoop = () => {
             })
         }
     })
+    // push new employee to teamMembers array after creation, then go back to employeeCreationLoop
     .then((newEmployee) => {
         if (newEmployee) {
             //console.log(newEmployee);
@@ -216,6 +222,7 @@ const employeeCreationLoop = () => {
     })
 }
 
+// write HTML file
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, function (err) {
         if (err) {
@@ -225,6 +232,7 @@ function writeToFile(fileName, data) {
     });
 };
 
+// copy CSS file from src to dist
 function copyFile(source, destination) {
     fs.copyFile(source, destination, function (err) {
         if (err) {
@@ -234,6 +242,7 @@ function copyFile(source, destination) {
     });
 };
 
+// Primary code sequence to prompt user for manager info, enter employee creation loop, then execute writing of HTML and copying of CSS
 promptManager()
     .then(answers => {
         //console.log(answers);
