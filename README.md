@@ -50,12 +50,12 @@ Each role will also have an additional piece of information applied to their car
 ---
 
 ## Installation
-Clone the repository from https://github.com/barron-a/readme-generator
+Clone the repository from https://github.com/barron-a/team-profile-generator
 
 ---
 
 ## Usage
-To use this application navigate to the cloned folder from your Terminal and run 'node index.js' from the command line. You will be prompted with a series of questions and given instructions on how to find your completed README.md file.
+To use this application navigate to the cloned folder from your Terminal and run 'node index.js' from the command line. You will be prompted with a series of questions. Once you choose 'I'm done' from the command line, you will be given instructions on how to find the completed HTML file and copied CSS file.
 
 ### Video Demo
 Please see the following link for a [video demo](https://drive.google.com/file/d/1M-zSkZ4B_CIfD2kNrdAsO7lKI4UmFIaR/view)
@@ -70,6 +70,7 @@ Please see the following link for a [video demo](https://drive.google.com/file/d
 - JavaScript
 - Node.js
 - Inquirer
+- Jest
 
 ---
 
@@ -77,6 +78,7 @@ Please see the following link for a [video demo](https://drive.google.com/file/d
 
 - Utilized Inquirer via NPM for user prompts
 - Utilized Bootstrap for CSS styling/layout
+- Utilized Jest for running test suites for employee creation
 
 ---
 
