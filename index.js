@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const fs = require('fs');
 const generatePage = require('./src/page-template.js');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -206,7 +207,7 @@ const employeeCreationLoop = () => {
             })
         }
     })
-    .then( (newEmployee) => {
+    .then((newEmployee) => {
         if (newEmployee) {
             console.log(newEmployee);
             teamMembers.push(newEmployee)
@@ -214,6 +215,24 @@ const employeeCreationLoop = () => {
         }
     })
 }
+
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(`HTML complete! Look for the file ${fileName} in the 'dist' folder to see the output.`);
+    });
+};
+
+function copyFile(source, destination) {
+    fs.copyFile(source, destination, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(`CSS File copied! Look for ${destination} in the 'dist' folder to see the output`);
+    });
+};
 
 promptManager()
     .then(answers => {
@@ -225,4 +244,9 @@ promptManager()
     .then(() => generatePage(teamMembers))
     .then(html => {
         console.log(html);
+        writeToFile('./dist/index.html', generatePage(teamMembers));
     })
+    .then(css => {
+        console.log(css);
+        copyFile('./src/style.css', './dist/style.css')
+    });

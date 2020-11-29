@@ -31,29 +31,29 @@ module.exports = (teamMembers) => {
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">ID: ${manager.getId()}</li>
-                            <li class="list-group-item">Email: ${manager.getEmail()}</li>
+                            <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
                             <li class="list-group-item">Office Number: ${manager.getOfficeNumber()}</li>
                         </ul>
                     </div>
                 </div>`)}
                 ${engineers.map(engineer => `<div class="card shadow col-3">
                     <div class="card-header text-white bg-primary pb-0 name">${engineer.getName()}</div>
-                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>${engineer.getRole()}</div>
+                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-microscope mr-2"></i>${engineer.getRole()}</div>
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">ID: ${engineer.getId()}</li>
-                            <li class="list-group-item">E-mail: ${engineer.getEmail()}</li>
-                            <li class="list-group-item">GitHub: ${engineer.getGithub()}</li>
+                            <li class="list-group-item">E-mail: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+                            <li class="list-group-item">GitHub: <a href="https://github.com/${engineer.getGithub()}" target="_blank">${engineer.getGithub()}</a></li>
                         </ul>
                     </div>
                 </div>`)}
                 ${interns.map(intern => `<div class="card shadow col-3">
                     <div class="card-header text-white bg-primary pb-0 name">${intern.getName()}</div>
-                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-clipboard mr-2"></i>${intern.getRole()}</div>
+                    <div class="card-header text-white bg-primary pt-0 role"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</div>
                     <div class="card-body bg-light">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">ID: ${intern.getId()}</li>
-                            <li class="list-group-item">E-mail: ${intern.getEmail()}</li>
+                            <li class="list-group-item">E-mail: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
                             <li class="list-group-item">School: ${intern.getSchool()}</li>
                         </ul>
                     </div>
